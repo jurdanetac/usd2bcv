@@ -30,7 +30,7 @@ with sqlite3.connect(database) as con:
 
             date = datetime.date(*date_tuple).isoformat()
             source = "BCV"
-            bolivar = "Bs"
+            bolivar = "Bs."
             buy = sh.row(rx)[1].value
             sell = sh.row(rx)[2].value
 
