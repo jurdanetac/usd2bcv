@@ -17,11 +17,15 @@ const renderLineChart = ({ data }: { data: Data[] }): JSX.Element => {
       data={data}
       margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
     >
-      <Line type="monotone" dataKey="buy" stroke="#8884d8" />
+      <Line type="monotone" dataKey="buy" stroke="#FFFF00" />
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
       <XAxis dataKey="date" />
-      <YAxis />
-      <Tooltip />
+      <YAxis scale="log" domain={["auto", "auto"]} />
+      <Tooltip
+        labelStyle={{ color: "black" }}
+        itemStyle={{ color: "black" }}
+        wrapperStyle={{ backgroundColor: "white" }}
+      />
     </LineChart>
   );
 };

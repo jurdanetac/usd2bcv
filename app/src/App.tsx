@@ -1,38 +1,30 @@
 import "./App.css";
 
 import React from "react";
-import { useEffect, useState } from "react";
-
-import { dbEntry } from "./types";
-import api from "./services/api";
 
 import Chart from "./components/Chart";
 
-const App: React.FC = () => {
-  const [entries, setEntries] = useState<dbEntry[]>([]);
+import { dbEntry } from "./types";
+import { isBsD } from "./utils";
+import data from "./data.ts";
 
-  // fetch full data from api on component mount
-  useEffect(() => {
-    api
-      .getAll()
-      .then((response: { data: dbEntry[] }) => {
-        setEntries(response.data);
-      })
-      .catch((error: Error) => {
-        console.error(error);
-      });
-  }, []);
+const App: React.FC = () => {
+  const show: dbEntry[] = data().filter(isBsD);
 
   return (
     <>
       <header>
         <h1>usd2bcv</h1>
-        <p>Quickly compare USD to Bs. across time</p>
+        <p>Quickly compare USD to Bs. across time in your browser</p>
+        <p>Updated to: {show[show.length - 1].date}</p>
+        <p>
+          Powered by <a href="https://www.bcv.org.ve/">BCV</a> data
+        </p>
       </header>
 
       <main>
         <h2>Bs. D vs USD</h2>
-        <Chart data={entries} />
+        <Chart data={show} />
       </main>
 
       <footer>
