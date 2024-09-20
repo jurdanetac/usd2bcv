@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { dbEntry } from "./types";
 import api from "./services/api";
 
-const App: React.FC = () => {
-  const [entries, setEntries] = useState([]);
+import Chart from "./components/Chart";
 
-  // fetch full data from api
+const App: React.FC = () => {
+  const [entries, setEntries] = useState<dbEntry[]>([]);
+
+  // fetch full data from api on component mount
   useEffect(() => {
     api
       .getAll()
@@ -22,13 +24,21 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>usd2bcv</h1>
-      <p>Quickly compare USD to Bs. across time</p>
+    <>
+      <header>
+        <h1>usd2bcv</h1>
+        <p>Quickly compare USD to Bs. across time</p>
+      </header>
 
-      <h2>Bs. D vs USD</h2>
-      <p>Chart</p>
-    </div>
+      <main>
+        <h2>Bs. D vs USD</h2>
+        <Chart data={entries} />
+      </main>
+
+      <footer>
+        <p>footer</p>
+      </footer>
+    </>
   );
 };
 
