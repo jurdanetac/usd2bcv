@@ -1,6 +1,6 @@
 import { dbEntry } from "./types.ts";
 
-const data: dbEntry[] = () => [
+const data = (): dbEntry[] => [
   {
     date: "1985-01-02",
     source: "BCV",

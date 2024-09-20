@@ -7,9 +7,9 @@ import {
   Tooltip,
 } from "recharts";
 
-import { Data } from "../types";
+import { dbEntry } from "../types.ts";
 
-const renderLineChart = ({ data }: { data: Data[] }): JSX.Element => {
+const renderLineChart = ({ data }: { data: dbEntry[] }) => {
   return (
     <LineChart
       width={600}
